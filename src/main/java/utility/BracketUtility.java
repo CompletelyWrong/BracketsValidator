@@ -1,10 +1,10 @@
 package utility;
 
-import java.util.Objects;
 import java.util.Stack;
 
+import static java.util.Objects.isNull;
+
 public final class BracketUtility {
-    private static final String REG_EX = "\\(|\\)";
 
     public static boolean isValidByMath(String brackets) {
         validateInput(brackets);
@@ -31,9 +31,14 @@ public final class BracketUtility {
     public static boolean isValidByRegEx(String brackets) {
         validateInput(brackets);
 
+        if (brackets.isEmpty() || brackets.charAt(0) != '(') {
+            return false;
+        }
+
         while (brackets.contains("()")) {
             brackets = brackets.replace("()", "");
         }
+
         return brackets.length() == 0;
     }
 
@@ -66,7 +71,7 @@ public final class BracketUtility {
     }
 
     private static void validateInput(String brackets) {
-        if (Objects.isNull(brackets)) {
+        if (isNull(brackets)) {
             throw new IllegalArgumentException("Parameter is null");
         }
     }
