@@ -7,7 +7,7 @@ public final class BracketUtility {
     private static final String REG_EX = "\\(|\\)";
 
     public static boolean isValidByMath(String brackets) {
-        validate(brackets);
+        validateInput(brackets);
 
         if (brackets.isEmpty() || brackets.charAt(0) != '(') {
             return false;
@@ -29,21 +29,16 @@ public final class BracketUtility {
     }
 
     public static boolean isValidByRegEx(String brackets) {
-        validate(brackets);
+        validateInput(brackets);
 
-        if (brackets.isEmpty() || brackets.charAt(0) != '(') {
-            return false;
+        while (brackets.contains("()")) {
+            brackets = brackets.replace("()", "");
         }
-
-        int length = brackets.length();
-        int newLength = brackets.replaceAll(REG_EX, "").length();
-        int diff = length - newLength;
-
-        return diff % 2 == 0;
+        return brackets.length() == 0;
     }
 
     public static boolean isValidByStack(String brackets) {
-        validate(brackets);
+        validateInput(brackets);
 
         if (brackets.isEmpty() || brackets.charAt(0) != '(') {
             return false;
@@ -70,7 +65,7 @@ public final class BracketUtility {
         return false;
     }
 
-    private static void validate(String brackets) {
+    private static void validateInput(String brackets) {
         if (Objects.isNull(brackets)) {
             throw new IllegalArgumentException("Parameter is null");
         }
