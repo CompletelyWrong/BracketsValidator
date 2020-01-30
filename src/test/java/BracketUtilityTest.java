@@ -38,9 +38,24 @@ class BracketUtilityTest {
     }
 
     @Test
+    void isValidByTreeShouldThorIllegalArgumentException() {
+        Exception exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> isValidByTree(null));
+
+        assertTrue(exception.getMessage().contains("Parameter is null"));
+    }
+
+    @Test
     void isValidByMathShouldReturnTrue() {
         assertTrue(isValidByMath(VALID_FIRST));
         assertTrue(isValidByMath(VALID_SECOND));
+    }
+
+    @Test
+    void isValidByTreeShouldReturnTrue() {
+        assertTrue(isValidByTree(VALID_FIRST));
+        assertTrue(isValidByTree(VALID_SECOND));
     }
 
     @Test

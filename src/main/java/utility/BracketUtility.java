@@ -67,7 +67,20 @@ public final class BracketUtility {
     }
 
     public static boolean isValidByTree(String brackets) {
-        return false;
+        validateInput(brackets);
+
+        if (brackets.isEmpty() || brackets.charAt(0) != '(') {
+            return false;
+        }
+        Node node = new Node();
+
+        for (char bracket : brackets.toCharArray()) {
+            boolean balancedBracket = node.insertData(bracket);
+            if (!balancedBracket) {
+                return false;
+            }
+        }
+        return node.isBalanced();
     }
 
     private static void validateInput(String brackets) {
