@@ -88,4 +88,10 @@ class BracketUtilityTest {
         assertFalse(isValidByStack(INVALID_FIRST));
         assertFalse(isValidByStack(INVALID_SECOND));
     }
+
+    @Test
+    void isValidByTreeShouldReturnFalse() {
+        assertFalse(isValidByTree(INVALID_FIRST));
+        assertFalse(isValidByTree(INVALID_SECOND));
+    }
 }
