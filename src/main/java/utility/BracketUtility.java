@@ -7,9 +7,7 @@ import static java.util.Objects.isNull;
 public final class BracketUtility {
 
     public static boolean isValidByMath(String brackets) {
-        validateInput(brackets);
-
-        if (brackets.isEmpty() || brackets.charAt(0) != '(') {
+        if (validateInput(brackets)) {
             return false;
         }
 
@@ -29,9 +27,7 @@ public final class BracketUtility {
     }
 
     public static boolean isValidByRegEx(String brackets) {
-        validateInput(brackets);
-
-        if (brackets.isEmpty() || brackets.charAt(0) != '(') {
+        if (validateInput(brackets)) {
             return false;
         }
 
@@ -43,9 +39,7 @@ public final class BracketUtility {
     }
 
     public static boolean isValidByStack(String brackets) {
-        validateInput(brackets);
-
-        if (brackets.isEmpty() || brackets.charAt(0) != '(') {
+        if (validateInput(brackets)) {
             return false;
         }
 
@@ -67,11 +61,10 @@ public final class BracketUtility {
     }
 
     public static boolean isValidByTree(String brackets) {
-        validateInput(brackets);
-
-        if (brackets.isEmpty() || brackets.charAt(0) != '(') {
+        if (validateInput(brackets)) {
             return false;
         }
+
         Node node = new Node();
 
         for (char bracket : brackets.toCharArray()) {
@@ -83,10 +76,12 @@ public final class BracketUtility {
         return node.isBalanced();
     }
 
-    private static void validateInput(String brackets) {
+    private static boolean validateInput(String brackets) {
         if (isNull(brackets)) {
             throw new IllegalArgumentException("Parameter is null");
         }
+
+        return brackets.isEmpty() || brackets.charAt(0) != '(';
     }
 
     private BracketUtility() {
