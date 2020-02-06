@@ -21,7 +21,6 @@ public class Node {
         if (bracket == '(') {
             if (getLast() == this && left == null) {
                 left = bracket;
-
                 return true;
             }
             Node node = new Node();
@@ -40,7 +39,6 @@ public class Node {
             } else if (last != null) {
                 while (last.right != null) {
                     if (last.parent == null) {
-
                         return false;
                     }
                     last = last.getParent();
